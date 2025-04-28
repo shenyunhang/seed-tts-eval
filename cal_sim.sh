@@ -1,4 +1,5 @@
 set -x
+set -e
 
 meta_lst=$1
 output_dir=$2
@@ -19,7 +20,7 @@ mkdir $thread_dir
 num_job=$ARNOLD_WORKER_GPU
 num=`wc -l $wav_wav_text | awk -F' ' '{print $1}'`
 num_per_thread=`expr $num / $num_job + 1`
-sudo split -l $num_per_thread --additional-suffix=.lst -d $wav_wav_text $thread_dir/thread-
+split -l $num_per_thread --additional-suffix=.lst -d $wav_wav_text $thread_dir/thread-
 out_dir=/tmp/thread_metas_$timestamp/results/
 mkdir $out_dir
 
